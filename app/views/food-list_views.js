@@ -9,15 +9,15 @@ foodList.init();
 // dataset.id là data tự set bên thẻ html (data-id="nhinhinhinhi")
 document.querySelector("#tbodyFood").addEventListener("click", function (event) {
     if (event.target.id === "delete") {
-        // console.dir(event.target);
         const id = event.target.dataset.id;
-        // console.dir(event.target.dataset.id);
-        // console.log("đây là delete");
         foodList.clickDelete(id);
     }
     if (event.target.id === "edit") {
-        // console.dir(event.target);
-        console.dir(event.target.dataset.id);
-        console.log("đây là edit");
+        const id = event.target.dataset.id;
+        foodList.clickEdit(id);
     }
+});
+
+document.querySelector("#btnCapNhat").addEventListener("click", function () {
+    foodList.clickUpdate();
 });

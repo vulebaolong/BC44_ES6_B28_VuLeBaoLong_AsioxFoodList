@@ -1,11 +1,17 @@
 const foodList = {
+    BASE_URL: "https://645ca39ae01ac610588ecdf2.mockapi.io/food/",
     create: function () {},
     read: function () {
-        return axios.get("https://645ca39ae01ac610588ecdf2.mockapi.io/food");
+        return axios.get(this.BASE_URL);
     },
-    update: function () {},
+    readOneItem: function (id) {
+        return axios.get(this.BASE_URL + id);
+    },
+    update: function (id, data) {
+        return axios.put(this.BASE_URL + id, data);
+    },
     delete: function (id) {
-        return axios.delete("https://645ca39ae01ac610588ecdf2.mockapi.io/food/" + id);
+        return axios.delete(this.BASE_URL + id);
     },
     init: async function () {
         const result = await this.read();
@@ -37,7 +43,43 @@ const foodList = {
         const result = await this.read();
         this.render(result.data);
     },
-    //edit nhi làm thêm
+    clickEdit: async function (idEl) {
+        console.log(idEl);
+        $("#exampleModal").modal("show");
+        const result = await this.readOneItem(idEl);
+        console.log(result.data);
+        const { id, name, type, price, discount, status, img, description } = result.data;
+        this.showDataOnForm(id, name, type, price, discount, status, img, description);
+    },
+    clickUpdate: async function () {
+        const data = this.getDataForm();
+        console.log(data);
+        const resultUp = await this.update(data.id, data);
+        console.log("👙  resultUp: ", resultUp);
+        const result = await this.read();
+        this.render(result.data);
+    },
+    showDataOnForm: function (id, name, type, price, discount, status, img, description) {
+        document.querySelector("#foodID").value = id;
+        document.querySelector("#tenMon").value = name;
+        document.querySelector("#loai").value = type;
+        document.querySelector("#giaMon").value = price;
+        document.querySelector("#khuyenMai").value = discount;
+        document.querySelector("#tinhTrang").value = status;
+        document.querySelector("#hinhMon").value = img;
+        document.querySelector("#moTa").value = description;
+    },
+    getDataForm: function () {
+        const id = document.querySelector("#foodID").value;
+        const name = document.querySelector("#tenMon").value;
+        const type = document.querySelector("#loai").value;
+        const price = document.querySelector("#giaMon").value;
+        const discount = document.querySelector("#khuyenMai").value;
+        const status = document.querySelector("#tinhTrang").value;
+        const img = document.querySelector("#hinhMon").value;
+        const description = document.querySelector("#moTa").value;
+        return { id, name, type, price, discount, status, img, description };
+    },
 };
 
 export default foodList;
