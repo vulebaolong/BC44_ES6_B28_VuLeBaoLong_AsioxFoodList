@@ -24,14 +24,18 @@ const foodList = {
                 <tr>
                     <td>${el.id}</td>
                     <td>${el.name}</td>
-                    <td>${el.type}</td>
+                    <td>${el.type === "loai1" ? "chay" : "mặn"}</td>
                     <td>${el.price}</td>
-                    <td>${el.discount}</td>
+                    <td>${el.discount}%</td>
                     <td>${el.discountPrice}</td>
-                    <td>${el.status}</td>
+                    <td>${el.status === "0" ? "hết" : "còn"}</td>
                     <td>
-                        <button id="delete" data-id="${el.id}" data-nhi="nhi" data-long="abc" class="btn btn-dark">xóa</button>
-                        <button id="edit" data-id="${el.id}" class="btn btn-danger">sửa</button>
+                        <button id="delete" data-id="${
+                            el.id
+                        }" data-nhi="nhi" data-long="abc" class="btn btn-dark">xóa</button>
+                        <button id="edit" data-id="${
+                            el.id
+                        }" class="btn btn-danger">sửa</button>
                     </td>
                 </tr>
             `;
