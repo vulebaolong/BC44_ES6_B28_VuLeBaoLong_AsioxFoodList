@@ -21,3 +21,23 @@ document.querySelector("#tbodyFood").addEventListener("click", function (event) 
 document.querySelector("#btnCapNhat").addEventListener("click", function () {
     foodList.clickUpdate();
 });
+
+document.querySelector("#selLoai").addEventListener("change", (event) => {
+    foodList.sortData(event.target.value);
+});
+
+document.querySelector("#input_search").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        const value = document.querySelector("#input_search").value;
+        foodList.searchName(value);
+    }
+});
+
+document.querySelector("#btnThem").addEventListener("click", () => {
+    document.querySelector("#btnCapNhat").disabled = true;
+    document.querySelector("#btnThemMon").disabled = false;
+});
+
+document.querySelector("#btnThemMon").addEventListener("click", () => {
+    foodList.clickAdd();
+});
