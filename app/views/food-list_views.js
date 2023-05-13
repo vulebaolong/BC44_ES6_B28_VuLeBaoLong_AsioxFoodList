@@ -36,6 +36,7 @@ document.querySelector("#input_search").addEventListener("keydown", (event) => {
 document.querySelector("#btnThem").addEventListener("click", () => {
     document.querySelector("#btnCapNhat").disabled = true;
     document.querySelector("#btnThemMon").disabled = false;
+    foodList.resetForm();
 });
 
 document.querySelector("#btnThemMon").addEventListener("click", () => {

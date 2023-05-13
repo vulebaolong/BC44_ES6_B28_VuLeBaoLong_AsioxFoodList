@@ -114,13 +114,13 @@ const foodList = {
     },
     sortData: function (type) {
         if (type === "all" || type === "Chọn loại") {
-            this.render(this.arrData);
+            this.render(this.arrData.reverse());
             return;
         }
         const result = this.arrData.filter(function (item) {
             return item.type === type;
         });
-        this.render(result);
+        this.render(result.reverse());
     },
     searchName: async function (name) {
         this.loading("on");
@@ -160,6 +160,16 @@ const foodList = {
         if (flag === "on") {
             document.querySelector(".spinner_modal").classList.remove("hide_spinner");
         }
+    },
+    resetForm: function () {
+        document.querySelector("#foodID").value = "";
+        document.querySelector("#tenMon").value = "";
+        document.querySelector("#loai").value = "Chọn loại";
+        document.querySelector("#giaMon").value = "";
+        document.querySelector("#khuyenMai").value = "Chọn khuyến mãi";
+        document.querySelector("#tinhTrang").value = "Chọn tình trạng";
+        document.querySelector("#hinhMon").value = "";
+        document.querySelector("#moTa").value = "";
     },
 };
 
